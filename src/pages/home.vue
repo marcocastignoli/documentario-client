@@ -10,30 +10,15 @@
       <b-row class="pt-3">
         <b-col class="text-center">
           <h3>Culture</h3>
-          <b-embed
-            type="iframe"
-            aspect="16by9"
-            src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-            allowfullscreen
-          ></b-embed>
+          
         </b-col>
         <b-col class="text-center">
           <h3>Social Change</h3>
-          <b-embed
-            type="iframe"
-            aspect="16by9"
-            src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-            allowfullscreen
-          ></b-embed>
+          
         </b-col>
         <b-col class="text-center">
           <h3>Travel Stories</h3>
-          <b-embed
-            type="iframe"
-            aspect="16by9"
-            src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-            allowfullscreen
-          ></b-embed>
+          
         </b-col>
       </b-row>
     </b-container>

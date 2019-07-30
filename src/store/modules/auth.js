@@ -1,19 +1,30 @@
-// initial state
+import { login } from '../../api/auth'
+
 const state = {
     logged: null
 }
 
-// getters
 const getters = {
     user: (state) => {
         return state.logged
     }
 }
 
-// actions
 const actions = {
-    login({ commit }, user) {
-        commit('setLoggedUser', user)
+    async login({ commit }, { email, password }) {
+        const result = await login({ email, password })
+        if (result.success) {
+            commit('setLoggedUser', {
+                username: result.user.username,
+                role: result.user.role,
+                email: result.user.email,
+                id: result.user.id,
+                token: result.token
+            })
+            return true
+        } else {
+            return false
+        }
     },
 
     logout({ commit }) {
@@ -21,7 +32,6 @@ const actions = {
     }
 }
 
-// mutations
 const mutations = {
     setLoggedUser(state, user) {
         state.logged = user

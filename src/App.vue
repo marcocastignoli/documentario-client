@@ -13,7 +13,7 @@
           <b-nav-item href="#">LOCAL STORIES</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item v-if="!user" href="#" @click="login()">Login</b-nav-item>
+          <b-nav-item v-if="!user" href="#" v-b-modal.modal-login>Login</b-nav-item>
           <b-nav-item-dropdown v-else right>
             <template slot="button-content">@{{user.username}}</template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
@@ -22,13 +22,17 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+    <b-modal id="modal-login" title="Login">
+      <div slot="modal-footer"/>
+      <login />
+    </b-modal>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-
+import Login from './components/Login'
 export default {
   name: 'app',
   computed: {
@@ -40,9 +44,6 @@ export default {
     hero() {
       return require('./assets/hero.jpg')
     },
-    login() {
-      this.$store.dispatch('auth/login', { username: 'aneldo' })
-    },
     logout() {
       this.$store.dispatch('auth/logout')
     },
@@ -53,15 +54,21 @@ export default {
       };
     }
   },
+  components: {
+    Login
+  }
 }
 </script>
 
 <style>
- body {
+  body {
+      font-family: 'Merriweather', serif;
+  }
+  .navbar .nav-item, .form-text.text-muted, .btn {
     font-family: 'Arimo', sans-serif;
- }
-  .navbar-brand, h1, .card-img-overlay .card-title, h3 {
-    font-family: 'Merriweather', serif;
+  }
+  .btn {
+    text-transform: uppercase;
   }
   .nav-link {
     outline: none;
