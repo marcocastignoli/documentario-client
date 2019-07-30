@@ -16,9 +16,20 @@
       </b-form-group>
 
       <b-form-group
+        label="Username"
+        label-for="username"
+      >
+        <b-form-input
+          id="username"
+          v-model="form.username"
+          required
+          placeholder="username"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
         label="Password"
         label-for="input-password"
-        description="If you forgot your password write an email to info@asd.it"
       >
         <b-form-input
           id="input-password"
@@ -35,13 +46,17 @@
 </template>
 
 <script>
+
+import { signup } from '../api/auth'
+
 export default {
-  name: 'login',
+  name: 'signup',
   data() {
     return {
       form: {
         email: '',
-        password: ''
+        username: '',
+        password: '',
       },
       show: true
     }
@@ -49,17 +64,25 @@ export default {
   methods: {
     async onSubmit(evt) {
       evt.preventDefault()
-      const res = await this.$store.dispatch('auth/login', {
+      const confirm = await signup({
         email: this.form.email,
+        username: this.form.username,
         password: this.form.password
       })
-      if (res) {
-        this.$bvModal.hide('modal-login')
+      if (confirm) {
+        const res = await this.$store.dispatch('auth/login', {
+          email: this.form.email,
+          password: this.form.password
+        })
+        if (res) {
+          this.$bvModal.hide('modal-signup')
+        }
       }
     },
     onReset(evt) {
       evt.preventDefault()
       this.form.email = ''
+      this.form.username = ''
       this.form.password = ''
       this.show = false
       this.$nextTick(() => {

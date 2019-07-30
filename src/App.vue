@@ -14,8 +14,9 @@
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if="!user" href="#" v-b-modal.modal-login>Login</b-nav-item>
+          <b-nav-item v-if="!user" href="#" v-b-modal.modal-signup>Signup</b-nav-item>
           <b-nav-item-dropdown v-else right>
-            <template slot="button-content">@{{user.username}}</template>
+            <template slot="button-content"><div class="username">@{{user.username}}</div></template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#" @click="logout()">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -26,6 +27,10 @@
       <div slot="modal-footer"/>
       <login />
     </b-modal>
+    <b-modal id="modal-signup" title="Sign up">
+      <div slot="modal-footer"/>
+      <signup />
+    </b-modal>
     <router-view></router-view>
   </div>
 </template>
@@ -33,6 +38,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Login from './components/Login'
+import Signup from './components/Signup'
 export default {
   name: 'app',
   computed: {
@@ -55,7 +61,8 @@ export default {
     }
   },
   components: {
-    Login
+    Login,
+    Signup
   }
 }
 </script>
@@ -66,6 +73,10 @@ export default {
   }
   .navbar .nav-item, .form-text.text-muted, .btn {
     font-family: 'Arimo', sans-serif;
+  }
+  .navbar .nav-item .username {
+    font-family: 'Merriweather', serif;
+    display: inline-block;
   }
   .btn {
     text-transform: uppercase;
