@@ -3,23 +3,11 @@
     <b-container>
       <b-row>
         <b-col class="text-center pt-4">
-          <h1>The editorial staff's favourites</h1>
+          <h1>Inchiesta</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida sagittis porta. Curabitur dapibus tincidunt ipsum, non ultrices enim dapibus sed. In cursus massa erat, at ullamcorper tortor hendrerit vel. Vestibulum eu mattis ex, sed ullamcorper lacus. Pellentesque non orci accumsan, rhoncus risus vel, laoreet eros. Nullam ut augue eget turpis rhoncus dignissim vitae sed sapien. Donec dignissim tellus imperdiet tellus tempor gravida.</p>
         </b-col>
       </b-row>
       <b-row class="pt-3">
-        <b-col class="text-center">
-          <h3>Culture</h3>
-          
-        </b-col>
-        <b-col class="text-center">
-          <h3>Social Change</h3>
-          
-        </b-col>
-        <b-col class="text-center">
-          <h3>Travel Stories</h3>
-          
-        </b-col>
       </b-row>
     </b-container>
   </div>

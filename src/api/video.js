@@ -13,8 +13,8 @@ export const createVideo = ({ token, title, categoryId, description, video }) =>
     }).then(data => data.json())
 }
 
-export const getVideos = ({ token, page }) => {
-    return fetch(`http://localhost:8888/video/?page=${page}`, {
+export const getVideos = ({ token, page, categoryId }) => {
+    return fetch(`http://localhost:8888/video/?page=${page}&categoryId=${categoryId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
