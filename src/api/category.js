@@ -1,5 +1,5 @@
 export const getCategories = () => {
-    return fetch(`http://localhost:8888/category`, {
+    return fetch(`${process.env.VUE_APP_ADDRESS}/category`, {
         method: 'GET'
     }).then(data => data.json())
 }

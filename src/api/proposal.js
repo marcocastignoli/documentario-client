@@ -1,7 +1,7 @@
 export const deleteProposal = ({ token, id }) => {
     let formData = new FormData();
     formData.append('id', id);
-    return fetch('http://localhost:8888/proposal', {
+    return fetch(`${process.env.VUE_APP_ADDRESS}/proposal`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -14,7 +14,7 @@ export const createProposal = ({ token, link, categoryId }) => {
     let formData = new FormData();
     formData.append('link', link);
     formData.append('categoryId', categoryId);
-    return fetch('http://localhost:8888/proposal', {
+    return fetch(`${process.env.VUE_APP_ADDRESS}/proposal`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -24,7 +24,7 @@ export const createProposal = ({ token, link, categoryId }) => {
 }
 
 export const getMyProposals = ({ token, page }) => {
-    return fetch(`http://localhost:8888/myproposals/?page=${page}`, {
+    return fetch(`${process.env.VUE_APP_ADDRESS}/myproposals/?page=${page}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -33,7 +33,7 @@ export const getMyProposals = ({ token, page }) => {
 }
 
 export const getProposals = ({ token, page }) => {
-    return fetch(`http://localhost:8888/proposal/?page=${page}`, {
+    return fetch(`${process.env.VUE_APP_ADDRESS}/proposal/?page=${page}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

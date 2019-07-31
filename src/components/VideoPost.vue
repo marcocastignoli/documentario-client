@@ -4,7 +4,7 @@
       <b-row>
         <b-col md="4">
           <b-embed  type="video" aspect="16by9" controls poster="poster.png">
-            <source :src="`http://localhost:8888/stream/?path=${video.path}`" type="video/mp4">
+            <source :src="`${process.env.VUE_APP_ADDRESS}/stream/?path=${video.path}`" type="video/mp4">
           </b-embed>
         </b-col>
         <b-col md="8" class="description">
@@ -19,7 +19,7 @@
           <h2 style="text-align: center;">{{video.title}}</h2>
           <p class="mb-3">{{video.description}} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <b-embed type="video" aspect="16by9" controls poster="poster.png">
-            <source :src="`http://localhost:8888/stream/?path=${video.path}`" type="video/mp4">
+            <source :src="`${process.env.VUE_APP_ADDRESS}/stream/?path=${video.path}`" type="video/mp4">
           </b-embed>
         </b-col>
       </b-row>
