@@ -4,7 +4,7 @@
       <b-navbar-brand href="#">Inchiesta</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
+        <b-navbar-nav v-if="user">
           <router-link v-bind="menuItem('/')">HOME</router-link>
           <router-link v-for="category in categories" :key="category.id" v-bind="menuItem(`/categories/${category.id}`)">{{category.name}}</router-link>
         </b-navbar-nav>

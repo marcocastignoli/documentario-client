@@ -7,21 +7,14 @@
         </b-col>
       </b-row>
       <b-row class="pt-3">
-        <b-col class="text-center pt-4">
-          <b-card
-            v-for="video in videos"
-            :key="video.id"
-            :title="video.title"
-            class="mb-2"
-          >
-            <b-card-text>
-              {{video.description}}
-              <b-embed type="video" aspect="16by9" controls poster="poster.png">
-                <source :src="`http://localhost:8888/stream/?path=${video.path}`" type="video/mp4">
-              </b-embed>
-            </b-card-text>
-          </b-card>
-        </b-col>
+        <video-post
+          v-for="(video, index) in videos"
+          :key="video.id"
+          :video="video"
+          :type="calcGrid(index)"
+          @like="onLike(video)"
+          @unlike="onUnlike(video)"
+        />
       </b-row>
     </b-container>
   </div>
@@ -29,7 +22,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { getVideos } from '../api/video'
+import { getVideos, like, unlike } from '../api/video'
+import VideoPost from '../components/VideoPost'
 
 export default {
   data() {
@@ -54,19 +48,51 @@ export default {
   },
   mounted() {
     this.loadCategory()
+    this.calcGrid()
   },
   methods: {
+    calcGrid(n) {
+      if (n%3 === 0) {
+        return 'full'
+      } else {
+        return 'half'
+      }
+    },
     loadCategory() {
       this.category = this.categories.find(c => c.id === parseInt(this.$route.params.id))
       getVideos({
-        token: this.user.token,
+        token: this.user ? this.user.token : null,
         page: this.page,
         categoryId: this.category.id
       }).then(res => {
         this.videos = res.data
       })
-    }
+    },
+    onLike(video) {
+      this.$set(video, 'liked', true)
+      if (!video.likes) {
+        video.likes = 0
+      }
+      like({
+        token: this.user.token,
+        id: video.id
+      }).then(() => {
+        this.$set(video, 'likes', video.likes + 1)
+      })
+    },
+    onUnlike(video) {
+      this.$set(video, 'liked', false)
+      unlike({
+        token: this.user.token,
+        id: video.id
+      }).then(() => {
+        this.$set(video, 'likes', video.likes - 1)
+      })
+    },
   },
+  components: {
+    VideoPost
+  }
 }
 </script>
 

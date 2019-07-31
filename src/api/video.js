@@ -21,3 +21,27 @@ export const getVideos = ({ token, page, categoryId }) => {
         }
     }).then(data => data.json())
 }
+
+export const like = ({ token, id }) => {
+    let formData = new FormData();
+    formData.append('id', id);
+    return fetch('http://localhost:8888/like', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        body: formData
+    }).then(data => data.json())
+}
+
+export const unlike = ({ token, id }) => {
+    let formData = new FormData();
+    formData.append('id', id);
+    return fetch('http://localhost:8888/like', {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        body: formData
+    }).then(data => data.json())
+}
